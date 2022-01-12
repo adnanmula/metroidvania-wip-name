@@ -1,0 +1,544 @@
+{
+	"name": "player",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "player_default_height",
+			"type": "number",
+			"initialValue": "50",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 987478901161168
+		},
+		{
+			"functionName": "playerCreate",
+			"functionDescription": "Creates a player instance.",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "x",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 961941910110353
+				},
+				{
+					"name": "y",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 107429615436289
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 212545662764265,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 668081620690845,
+							"parameters": {
+								"first-value": "PlayerCollision.Count",
+								"comparison": 0,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 863540340589121,
+							"parameters": {
+								"object-to-create": "PlayerCollision",
+								"layer": "\"main\"",
+								"x": "x",
+								"y": "y",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 358119622616583,
+							"parameters": {
+								"seconds": "0"
+							}
+						}
+					],
+					"sid": 365226338405825,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "key-is-down",
+									"objectClass": "Keyboard",
+									"sid": 614957430715729,
+									"parameters": {
+										"key": 40
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 567625006424629
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "playerCrouch",
+									"sid": 997752365765599,
+									"parameters": [
+										true
+									]
+								}
+							],
+							"sid": 184887216571204
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "playerDestroy",
+			"functionDescription": "Destroy the player instance.",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 743936435930502,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 650829293468891,
+							"parameters": {
+								"object": "PlayerCollision"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "PlayerCollision",
+							"sid": 945081755716777
+						}
+					],
+					"sid": 970684265987186
+				}
+			]
+		},
+		{
+			"functionName": "playerCrouch",
+			"functionDescription": "Sets the player crouching",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "value",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 159300185315544
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 140854245405798,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 794261898981560,
+							"parameters": {
+								"variable": "value"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-height",
+							"objectClass": "PlayerCollision",
+							"sid": 193964057503543,
+							"parameters": {
+								"height": "player_default_height / 2"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "PlayerCollision",
+							"sid": 482260806370942,
+							"parameters": {
+								"x": "PlayerCollision.X",
+								"y": "PlayerCollision.Y + PlayerCollision.Height / 2"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "PlayerCollision",
+							"sid": 108480481939042,
+							"parameters": {
+								"instance-variable": "isCrouching",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 761480700589676
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 917798025870029,
+							"parameters": {
+								"variable": "value"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "PlayerCollision",
+							"sid": 514062968601521,
+							"parameters": {
+								"x": "PlayerCollision.X",
+								"y": "PlayerCollision.Y - PlayerCollision.Height / 2"
+							}
+						},
+						{
+							"id": "set-height",
+							"objectClass": "PlayerCollision",
+							"sid": 467732486052413,
+							"parameters": {
+								"height": "player_default_height"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "PlayerCollision",
+							"sid": 171213644557732,
+							"parameters": {
+								"instance-variable": "isCrouching",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 700663269674645
+				}
+			]
+		},
+		{
+			"functionName": "playerShoot",
+			"functionDescription": "Player shoots a projectile",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 817373010319717,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-timer-running",
+							"objectClass": "PlayerCollision",
+							"sid": 471834289727214,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"regular_shoot\""
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "spawn-another-object",
+							"objectClass": "PlayerCollision",
+							"sid": 410775158674012,
+							"parameters": {
+								"object": "projectile",
+								"layer": "\"main\"",
+								"image-point": "\"shoot\"",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "PlayerCollision",
+							"sid": 707651550630092,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "playerData.Get(\"player_shoot_cooldown\")",
+								"type": "once",
+								"tag": "\"regular_shoot\""
+							}
+						}
+					],
+					"sid": 831772364555518,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-mirrored",
+									"objectClass": "PlayerCollision",
+									"sid": 830899913021418
+								}
+							],
+							"actions": [
+								{
+									"id": "set-angle",
+									"objectClass": "projectile",
+									"sid": 963164355995360,
+									"parameters": {
+										"angle": "Self.Angle + 180"
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "projectile",
+									"sid": 724492215029441,
+									"parameters": {
+										"width": "-Self.Width",
+										"height": "-Self.Height"
+									}
+								}
+							],
+							"sid": 193097120479191
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "PlayerCollision",
+					"sid": 177415658416126
+				}
+			],
+			"actions": [],
+			"sid": 136042729837902,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 719801296864185,
+							"parameters": {
+								"object-to-create": "PlayerSprite",
+								"layer": "\"main\"",
+								"x": "PlayerCollision.X",
+								"y": "PlayerCollision.Y",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "PlayerSprite",
+							"sid": 531214581784285,
+							"parameters": {
+								"object": "PlayerCollision",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "add-child",
+							"objectClass": "PlayerCollision",
+							"sid": 123476928014930,
+							"parameters": {
+								"child": "PlayerSprite",
+								"transform-x": true,
+								"transform-y": true,
+								"transform-w": false,
+								"transform-h": true,
+								"transform-a": true,
+								"transform-z-elevation": true,
+								"destroy-with-parent": true
+							}
+						}
+					],
+					"sid": 241350668115933
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-jump-sustain",
+							"objectClass": "PlayerCollision",
+							"sid": 437910292951529,
+							"behaviorType": "Platform",
+							"parameters": {
+								"jump-sustain": "playerData.Get(\"platform_jump_sustain\")"
+							}
+						}
+					],
+					"sid": 631637957344003
+				}
+			]
+		},
+		{
+			"functionName": "playerJump",
+			"functionDescription": "",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "PlayerCollision",
+					"sid": 943963101288065,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "jump"
+					}
+				}
+			],
+			"sid": 314381048518121
+		},
+		{
+			"functionName": "playerMove",
+			"functionDescription": "",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "direction",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 148041372614119
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 155675451229594,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 845711353538499,
+							"parameters": {
+								"first-value": "direction",
+								"comparison": 0,
+								"second-value": "\"left\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "PlayerCollision",
+							"sid": 227412202228566,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "left"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "PlayerCollision",
+							"sid": 345653767695511,
+							"parameters": {
+								"state": "mirrored"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "PlayerSprite",
+							"sid": 801921961447047,
+							"parameters": {
+								"state": "mirrored"
+							}
+						}
+					],
+					"sid": 283304656283790
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 365074550871465,
+							"parameters": {
+								"first-value": "direction",
+								"comparison": 0,
+								"second-value": "\"right\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "PlayerCollision",
+							"sid": 921009686635184,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "right"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "PlayerCollision",
+							"sid": 967580688805803,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "PlayerSprite",
+							"sid": 960323608168157,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						}
+					],
+					"sid": 636776444562582
+				}
+			]
+		}
+	],
+	"sid": 568513110472782
+}

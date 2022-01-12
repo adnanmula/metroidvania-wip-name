@@ -1,0 +1,37 @@
+{
+	"name": "PlayerSprite",
+	"plugin-id": "Sprite",
+	"sid": 383184497395003,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 255,
+						"height": 604,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7532091,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 131176697280986,
+				"name": "idle",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

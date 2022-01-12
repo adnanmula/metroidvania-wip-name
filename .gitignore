@@ -1,0 +1,4 @@
+*.uistate.json
+/media
+.env
+/.idea

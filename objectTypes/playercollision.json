@@ -1,0 +1,79 @@
+{
+	"name": "PlayerCollision",
+	"plugin-id": "Sprite",
+	"sid": 927930618998340,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "isCrouching",
+			"type": "boolean",
+			"desc": "",
+			"sid": 937363856285531
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Platform",
+			"name": "Platform",
+			"sid": 799372083566304
+		},
+		{
+			"behaviorId": "scrollto",
+			"name": "ScrollTo",
+			"sid": 465620043676299
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 793893648436128
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 10,
+						"height": 20,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9068566,
+						"collisionPoly": {
+							"points": [
+								0.002857230050223214,
+								0,
+								1,
+								0,
+								1,
+								1,
+								0,
+								1
+							]
+						},
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "shoot",
+								"x": 1.5,
+								"y": 0.25
+							}
+						],
+						"duration": 1
+					}
+				],
+				"sid": 311803804241072,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

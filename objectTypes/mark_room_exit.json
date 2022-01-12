@@ -1,0 +1,50 @@
+{
+	"name": "mark_room_exit",
+	"plugin-id": "Sprite",
+	"sid": 985306860018219,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "destination_room",
+			"type": "string",
+			"desc": "",
+			"sid": 577482459744915
+		},
+		{
+			"name": "destination_spawn",
+			"type": "string",
+			"desc": "",
+			"sid": 965537411962674
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 10,
+						"height": 10,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8172199,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 769184492486587,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"name": "main",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "mapNavigation"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "player"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "projectile"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "controls"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 564051501897936
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "playerLoad",
+					"sid": 978580429617112
+				}
+			],
+			"sid": 723121373432827
+		}
+	],
+	"sid": 524179579511589
+}

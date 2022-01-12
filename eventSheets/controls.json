@@ -1,0 +1,342 @@
+{
+	"name": "controls",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Controls - Keyboard",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 354874815415533,
+							"parameters": {
+								"key": 37
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerMove",
+							"sid": 568456393988245,
+							"parameters": [
+								"\"left\""
+							]
+						}
+					],
+					"sid": 370596564860430
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 360748425779978,
+							"parameters": {
+								"key": 39
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerMove",
+							"sid": 673803794441523,
+							"parameters": [
+								"\"right\""
+							]
+						}
+					],
+					"sid": 152902149725367
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 581365826022275,
+							"parameters": {
+								"key": 90
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerJump",
+							"sid": 963877293227140
+						}
+					],
+					"sid": 238983027187803
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 448113013100656,
+							"parameters": {
+								"key": 40
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 231603868006525
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerCrouch",
+							"sid": 289821136818953,
+							"parameters": [
+								true
+							]
+						}
+					],
+					"sid": 952706456578820
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 812561343468895,
+							"parameters": {
+								"key": 40
+							},
+							"isInverted": true
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 762032872290470
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerCrouch",
+							"sid": 899117459539607,
+							"parameters": [
+								false
+							]
+						}
+					],
+					"sid": 353993128886851
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 140016086353206,
+							"parameters": {
+								"key": 88
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerShoot",
+							"sid": 545030996885104
+						}
+					],
+					"sid": 449641214517598
+				}
+			],
+			"sid": 727125972917006
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Controls - Gamepad",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 957207098131459,
+							"parameters": {
+								"gamepad": "0",
+								"button": "d-pad-left"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerMove",
+							"sid": 742230376993183,
+							"parameters": [
+								"\"left\""
+							]
+						}
+					],
+					"sid": 727550596122441
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 434871843937983,
+							"parameters": {
+								"gamepad": "0",
+								"button": "d-pad-right"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerMove",
+							"sid": 356365173161084,
+							"parameters": [
+								"\"right\""
+							]
+						}
+					],
+					"sid": 368236871833996
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 620393016861821,
+							"parameters": {
+								"gamepad": "0",
+								"button": "button-a"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerJump",
+							"sid": 177982989479664
+						}
+					],
+					"sid": 706916531609624
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 718546275056542,
+							"parameters": {
+								"gamepad": "0",
+								"button": "d-pad-down"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 168360355922463
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerCrouch",
+							"sid": 543648451566979,
+							"parameters": [
+								true
+							]
+						}
+					],
+					"sid": 828981849402448
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 840096380875738,
+							"parameters": {
+								"gamepad": "0",
+								"button": "d-pad-down"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 280086148922425
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerCrouch",
+							"sid": 328976916480687,
+							"parameters": [
+								false
+							]
+						}
+					],
+					"sid": 163962696627878
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-button-down",
+							"objectClass": "Gamepad",
+							"sid": 269108994346235,
+							"parameters": {
+								"gamepad": "0",
+								"button": "button-x"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "playerShoot",
+							"sid": 884205172803652
+						}
+					],
+					"sid": 935711581315202
+				}
+			],
+			"sid": 276904718985242
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 452777011575776,
+					"parameters": {
+						"key": 82
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 270125948024397,
+					"parameters": {
+						"layout": "mainMenu"
+					}
+				}
+			],
+			"sid": 434843899137670
+		}
+	],
+	"sid": 152070820594200
+}

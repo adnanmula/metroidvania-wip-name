@@ -1,0 +1,201 @@
+{
+	"name": "mainMenu",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "dictionaries_are_loaded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 276784082831332
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 258166293717309,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "menu_play"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 164783763654559,
+					"parameters": {
+						"layout": "room001"
+					}
+				}
+			],
+			"sid": 728065516796929
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 781899374844332
+				}
+			],
+			"actions": [],
+			"sid": 667251023587407,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 234880255536423,
+							"parameters": {
+								"variable": "dictionaries_are_loaded"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 198388620608480,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-key",
+									"objectClass": "mapData",
+									"sid": 458883864055343,
+									"parameters": {
+										"key": "\"room_next\"",
+										"value": "\"\""
+									}
+								},
+								{
+									"id": "set-key",
+									"objectClass": "mapData",
+									"sid": 292476530480972,
+									"parameters": {
+										"key": "\"room_next_spawn\"",
+										"value": "\"left\""
+									}
+								}
+							],
+							"sid": 295354858523197
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 900463301762942,
+							"parameters": {
+								"variable": "dictionaries_are_loaded"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 358756856752202,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-key",
+									"objectClass": "playerData",
+									"sid": 680174458638385,
+									"disabled": true,
+									"parameters": {
+										"key": "\"platform_jump_sustain\"",
+										"value": "0"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "playerData",
+									"sid": 634343106020852,
+									"parameters": {
+										"key": "\"platform_jump_sustain\"",
+										"value": "300"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "playerData",
+									"sid": 392393413156111,
+									"parameters": {
+										"key": "\"player_shoot_cooldown\"",
+										"value": "0.5"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "playerData",
+									"sid": 495940527546658,
+									"parameters": {
+										"key": "\"player_boots_unlocked\"",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 567273870111305
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-key",
+									"objectClass": "mapData",
+									"sid": 595336112269547,
+									"parameters": {
+										"key": "\"room_next\"",
+										"value": "\"\""
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "mapData",
+									"sid": 699392916377834,
+									"parameters": {
+										"key": "\"room_next_spawn\"",
+										"value": "\"left\""
+									}
+								}
+							],
+							"sid": 961848223275713
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 178552953471373,
+									"parameters": {
+										"variable": "dictionaries_are_loaded",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 584918808313287
+						}
+					]
+				}
+			]
+		}
+	],
+	"sid": 571451564534241
+}

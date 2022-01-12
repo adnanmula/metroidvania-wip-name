@@ -1,0 +1,248 @@
+{
+	"name": "projectile",
+	"events": [
+		{
+			"functionName": "projectileDestroy",
+			"functionDescription": "Destroy a given projectile",
+			"functionCategory": "projectile",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "uid",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 479053327355975
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 842050846367714,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "projectile",
+							"sid": 352954710872329,
+							"parameters": {
+								"unique-id": "uid"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-acceleration",
+							"objectClass": "projectile",
+							"sid": 598849513375453,
+							"behaviorType": "Bullet",
+							"parameters": {
+								"acceleration": "0"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "projectile",
+							"sid": 828123076908458,
+							"behaviorType": "Bullet",
+							"parameters": {
+								"speed": "0"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "projectile",
+							"sid": 186100328140282,
+							"parameters": {
+								"animation": "\"exploding\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 504667854334624
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "projectile",
+					"sid": 235064934977075
+				}
+			],
+			"actions": [
+				{
+					"id": "start-timer",
+					"objectClass": "projectile",
+					"sid": 982679987223293,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "1.5",
+						"type": "once",
+						"tag": "\"slow\""
+					}
+				}
+			],
+			"sid": 485030118851114
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-animation-finished",
+					"objectClass": "projectile",
+					"sid": 751372385567584,
+					"parameters": {
+						"animation": "\"exploding\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "projectile",
+					"sid": 576071732479015
+				}
+			],
+			"sid": 440781159641930
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "projectile",
+					"sid": 436149979244132,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"slow\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-acceleration",
+					"objectClass": "projectile",
+					"sid": 379521896249056,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"acceleration": "500"
+					}
+				}
+			],
+			"sid": 555092426916257
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "PlayerCollision",
+					"sid": 177950480368291,
+					"parameters": {
+						"object": "projectile"
+					}
+				},
+				{
+					"id": "compare-value",
+					"objectClass": "playerData",
+					"sid": 660761425582323,
+					"parameters": {
+						"key": "\"player_boots_unlocked\"",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "projectileDestroy",
+					"sid": 251593855985370,
+					"parameters": [
+						"projectile.UID"
+					]
+				}
+			],
+			"sid": 158277342627154
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "projectile",
+					"sid": 981878878621688,
+					"parameters": {
+						"object": "platform"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "projectileDestroy",
+					"sid": 369239610005692,
+					"parameters": [
+						"projectile.UID"
+					]
+				}
+			],
+			"sid": 129716205512924
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 900677370337915,
+					"parameters": {
+						"first-value": "projectile.X + projectile.Width / 2",
+						"comparison": 5,
+						"second-value": "LayoutWidth"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "projectileDestroy",
+					"sid": 829555156989786,
+					"parameters": [
+						"projectile.UID"
+					]
+				}
+			],
+			"sid": 581643429306043
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 379664538622450,
+					"parameters": {
+						"first-value": "projectile.X - projectile.Width / 2",
+						"comparison": 3,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "projectileDestroy",
+					"sid": 261884267849375,
+					"parameters": [
+						"projectile.UID"
+					]
+				}
+			],
+			"sid": 609370804423678
+		}
+	],
+	"sid": 229291384203764
+}

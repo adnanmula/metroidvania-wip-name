@@ -1,0 +1,222 @@
+{
+	"name": "mapNavigation",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 455590726498550
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "transition",
+					"sid": 594784492758682
+				}
+			],
+			"sid": 962701243968022
+		},
+		{
+			"functionName": "transition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 805064842929382,
+					"parameters": {
+						"object-to-create": "transition_black",
+						"layer": "\"transitions\"",
+						"x": "LayoutWidth/2",
+						"y": "LayoutHeight/2",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "transition_black",
+					"sid": 949345318711083,
+					"parameters": {
+						"width": "LayoutWidth",
+						"height": "LayoutHeight"
+					}
+				}
+			],
+			"sid": 743395444676840
+		},
+		{
+			"functionName": "playerLoad",
+			"functionDescription": "Loads the player into the right room marker.",
+			"functionCategory": "player",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 783414494523089,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-evaluate",
+							"objectClass": "System",
+							"sid": 888069825521654,
+							"parameters": {
+								"object": "mark_room_spawn",
+								"expression": "mark_room_spawn.name= mapData.Get(\"room_next_spawn\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 737816686173926,
+							"parameters": {
+								"key": "\"room_next\"",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 772901946655048,
+							"parameters": {
+								"key": "\"room_next_spawn\"",
+								"value": "\"\""
+							}
+						},
+						{
+							"callFunction": "playerDestroy",
+							"sid": 319761383043915
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 893352227479957,
+							"parameters": {
+								"seconds": "0"
+							}
+						},
+						{
+							"callFunction": "playerCreate",
+							"sid": 134967577558680,
+							"parameters": [
+								"mark_room_spawn.X",
+								"mark_room_spawn.Y"
+							]
+						}
+					],
+					"sid": 253900419417691
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "PlayerCollision",
+					"sid": 749654901897826,
+					"parameters": {
+						"object": "mark_room_exit"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 412759708428761,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 257959777270613,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 1,
+								"second-value": "mark_room_exit.destination_room"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 718664073590606,
+							"parameters": {
+								"key": "\"room_next\"",
+								"value": "mark_room_exit.destination_room"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 927218244855214,
+							"parameters": {
+								"key": "\"room_next_spawn\"",
+								"value": "mark_room_exit.destination_spawn"
+							}
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 954209110409033,
+							"parameters": {
+								"layout": "mark_room_exit.destination_room"
+							}
+						}
+					],
+					"sid": 590483135357554
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 148021237629321
+						}
+					],
+					"actions": [
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 553612422549517,
+							"parameters": {
+								"key": "\"room_next\"",
+								"value": "mark_room_exit.destination_room"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "mapData",
+							"sid": 953350547576723,
+							"parameters": {
+								"key": "\"room_next_spawn\"",
+								"value": "mark_room_exit.destination_spawn"
+							}
+						},
+						{
+							"callFunction": "playerLoad",
+							"sid": 379892157210690
+						}
+					],
+					"sid": 423377322276188
+				}
+			]
+		}
+	],
+	"sid": 929138714095873
+}
